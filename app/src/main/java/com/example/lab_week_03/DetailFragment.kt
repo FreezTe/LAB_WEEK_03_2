@@ -6,6 +6,7 @@ import android.widget.TextView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 
 /**
  * A simple [Fragment] subclass.
@@ -28,6 +29,10 @@ class DetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val coffeeId = arguments?.getInt(COFFEE_ID, 0) ?: 0
         setCoffeeData(coffeeId)
+        val btnBack: View = view.findViewById(R.id.btn_back)
+        btnBack.setOnClickListener {
+            view.findNavController().navigate(R.id.action_detailFragment_to_listFragment)
+        }
     }
 
     fun setCoffeeData(id: Int) {
@@ -43,6 +48,14 @@ class DetailFragment : Fragment() {
             R.id.latte -> {
                 coffeeTitle?.text = getString(R.string.latte_title)
                 coffeeDesc?.text = getString(R.string.latte_desc)
+            }
+            R.id.mocha -> {
+                coffeeTitle?.text = getString(R.string.mocha_title)
+                coffeeDesc?.text = getString(R.string.mocha_desc)
+            }
+            R.id.cappuccino -> {
+                coffeeTitle?.text = getString(R.string.cappuccino_title)
+                coffeeDesc?.text = getString(R.string.cappuccino_desc)
             }
         }
     }
